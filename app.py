@@ -11,6 +11,7 @@ from pycaret.regression import *
 
 #cargar modelos 
 knn_model=joblib.load("knn_prueba1.pkl")
+lgb_model=joblib.load("lightgbm_prueba1.pkl")
 
 #main 
 def main(): 
@@ -68,7 +69,7 @@ def main():
     st.write(model)
     
     if st.button('RUN'):
-        if model == 'Xg boosting':
+        if model == 'K Neighbors':
 
             np1 = predict_model(knn_model, data=df)
             np1=np1[['Label']]
@@ -78,7 +79,7 @@ def main():
             st.write("ft/hr")            
 
         elif model == 'lightgbm':
-            np2 = predict_model(knn_model, data=df)
+            np2 = predict_model(lgb_model, data=df)
             np2=np2[['Label']]
             st.title("La ROP esperada es de:")
             st.write(np2)
